@@ -1,0 +1,60 @@
+.header {
+  margin-bottom: 8px;
+}
+
+.table-container {
+  min-height: calc(17 * 40px);
+  max-height: 86vh;
+  overflow: auto;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+table {
+  width: 100%;
+  min-height: 100%;
+}
+
+.mat-mdc-table {
+  max-height: 400px;
+  overflow: auto;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-column-created,
+.mat-column-updated {
+  width: 130px;
+}
+
+.mat-column-title {
+  padding-left: 16px;
+}
+
+.paginator-placeholder {
+  height: 56px;
+  width: 100%;
+}
+
+.mat-mdc-header-row {
+  background-color: var(--neutral-grey-50);
+}
+.mat-mdc-paginator {
+  background-color: var(--neutral-white-50);
+}
+
+// just to block cell height
+.issue-title {
+  display: flex;
+  align-items: center;
+  height: 40px !important;
+  text-overflow: clip;
+}

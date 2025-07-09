@@ -1,0 +1,79 @@
+<div class="table-page-container">
+  <div class="header">
+    <button mat-flat-button (click)="onBackClick()">Back</button>
+  </div>
+
+  <div class="table-container" #tableContainer (scroll)="onTableScroll($event)">
+    @if (loading()) {
+    <div class="loading-spinner">
+      <mat-spinner diameter="40"></mat-spinner>
+    </div>
+    }
+    <!-- [matSortDirection]="currentOrder()" -->
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      [matSortActive]="currentSort()"
+      (matSortChange)="onSortChange($event)"
+      matSort
+      class="mat-elevation-z8"
+    >
+      <!-- Created Column -->
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Created On</th>
+        <td mat-cell *matCellDef="let issue">
+          {{ issue.created_at | date : "MM-dd-yy hh:mm:ss a" | lowercase }}
+        </td>
+      </ng-container>
+
+      <!-- Updated Column -->
+      <ng-container matColumnDef="updated">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Updated On</th>
+        <td mat-cell *matCellDef="let issue">
+          {{ issue.updated_at | date : "MM-dd-yy hh:mm:ss a" | lowercase }}
+        </td>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let issue">
+          <div class="issue-title">
+            {{ issue.title }}
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        class="table-row"
+      ></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        @defer {
+        <td class="mat-cell" colspan="3">No data found</td>
+        } @loading {
+        <td class="mat-cell" colspan="3">Loading...</td>
+        }
+      </tr>
+    </table>
+  </div>
+  <div class="paginator-container">
+    @defer (on viewport) {
+    <mat-paginator
+      [showFirstLastButtons]="true"
+      [length]="totalCount()"
+      [pageSize]="pageSize"
+      [pageIndex]="currentPage() - 1"
+      [pageSizeOptions]="[100]"
+      (page)="onPageChange($event)"
+      [hidePageSize]="true"
+    >
+    </mat-paginator>
+    } @placeholder {
+    <div class="paginator-placeholder"></div>
+    }
+  </div>
+</div>

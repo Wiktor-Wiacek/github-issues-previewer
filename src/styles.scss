@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+
+$font-family: Hind;
+$border-radius: 5px;
+
+$primary-blue-500: #326df3;
+$neutral-white-50: #ffffff;
+$neutral-grey-50: #efefef;
+$neutral-grey-100: #e2e2e2;
+$neutral-grey-500: #787a80;
+
+:root {
+  --neutral-white-50: #{$neutral-white-50};
+  --neutral-grey-50: #{$neutral-grey-50};
+  --border-radius: #{$border-radius};
+
+  @include mat.button-overrides(
+    (
+      filled-container-shape: $border-radius,
+      filled-container-color: $primary-blue-500,
+      filled-label-text-color: $neutral-white-50,
+      filled-label-text-font: $font-family,
+    )
+  );
+
+  @include mat.table-overrides(
+    (
+      background-color: $neutral-white-50,
+      row-item-outline-width: 1px,
+      row-item-outline-color: $neutral-grey-100,
+
+      header-container-height: 40px,
+      row-item-container-height: 40px,
+
+      header-headline-font: $font-family,
+      header-headline-line-height: 24px,
+      header-headline-size: 14px,
+      header-headline-weight: 500,
+      header-headline-color: $neutral-grey-500,
+
+      row-item-label-text-font: $font-family,
+      row-item-label-text-line-height: 14px,
+      row-item-label-text-size: 14px,
+      row-item-label-text-weight: 500,
+      row-item-label-text-color: $neutral-grey-500,
+    )
+  );
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
